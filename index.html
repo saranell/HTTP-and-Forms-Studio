@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8" />
   <script>
-    (setSearchEngine) => {
-      let engine = document.querySelector("input[name=engine]:checked");
-      let value = document.querySelector(".value");
+    function setSearchEngine() {
       let actions = {
         google: "https://www.google.com/",
         duckDuckGo: "https://duckduckgo.com/",
         bing: "https://www.bing.com/search",
         ask: "	https://www.ask.com/web",
       };
-    };
-    // TODO: create a handler
+
+      let form = document.getElementById("searchForm");
+      let searchEngine = document.querySelector("input[name=engine]:checked");
+      let action = actions[searchEngine.value];
+      form.setAttribute("action", action);
+    }
 
     window.addEventListener("load", function () {
-      let search = document.getElementById("searchForm");
-      search.addEventListener("submit", function (event) {
-        console.log("searching...");
-        event.preventDefault();
-      });
+      let form = document.getElementById("searchForm");
+      form.addEventListener("submit", setSearchEngine);
+      //   event.preventDefault();
     });
   </script>
 </head>
